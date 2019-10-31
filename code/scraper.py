@@ -46,6 +46,8 @@ wl = WordList(username, 0, [])
 for tweet in tweets:
     wl.words.extend(tweet._json["text"].split()[:MAX_WORDS-wl.wordCount])
     wl.wordCount += len(tweet._json["text"].split()[:MAX_WORDS-wl.wordCount])
+    if wl.wordCount > 299:
+        break
 
 if wl.wordCount < 300:
     print("\tWARNING: Unable to get 300 words from " + username + ". Could only pull " + str(wl.wordCount) + ". Saved to output_" + username + ".json\n")
